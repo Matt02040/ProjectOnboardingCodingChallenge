@@ -1,1 +1,46 @@
+const vowels = ['a','e','i','o','u'];
 
+function getConsonantSubstrings(str) {
+  return getSubstrings(str, false);
+}
+
+function getVowelSubstrings(str) {
+  return getSubstrings(str, true);
+}
+
+function getSubstrings(str, isVowel) {
+    let arr = [];
+    for(let i = 0; i < str.length; i++){
+        if(vowels.includes(str[i]) == isVowel) {
+            arr.push(str[i])
+            let subString = str[i];
+            for(let j = i + 1; j < str.length; j++) {
+                subString += str[j];
+                if(vowels.includes(str[j]) == isVowel) {
+                    arr.push(subString)
+                }
+            }
+        }
+    }
+    arr.sort();
+    return arr;
+}
+
+function redundant(str) {
+    return newRedundant(str);
+}
+function newRedundant(str) {
+    return str;
+}
+
+console.log(getVowelSubstrings("apple"));
+console.log(getVowelSubstrings("hmm"));
+console.log(getConsonantSubstrings("aviation"));
+console.log(getConsonantSubstrings("motor"));
+
+const f1 = redundant("apple");
+console.log(f1);
+const f2 = redundant("pear");
+console.log(f2);
+const f3 = redundant("");
+console.log(f3);
